@@ -2,30 +2,27 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<title>Ácido Cítrico – Producción y Aplicaciones</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ácido Cítrico | Producción y Aplicaciones</title>
 
-<!-- Fuentes -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --verde-oscuro:#0A3323;
-  --verde-claro:#839958;
-  --beige:#F7F4D5;
-  --rosado:#D3968C;
-  --azul:#105666;
-  --blanco:#ffffff;
+  --verde:#1E3D32;
+  --verde-suave:#A3C9A8;
+  --crema:#F6F5EF;
+  --gris:#2E2E2E;
+  --dorado:#C9A24D;
 }
 
 body{
   margin:0;
   font-family:'Inter',sans-serif;
   background:
-    linear-gradient(rgba(247,244,213,0.95),rgba(247,244,213,0.95)),
+    linear-gradient(rgba(246,245,239,0.96),rgba(246,245,239,0.96)),
     url("https://i.imgur.com/5Xqzv9p.png");
-  background-size:cover;
-  color:#2b2b2b;
+  color:var(--gris);
 }
 
 /* NAV */
@@ -33,213 +30,212 @@ nav{
   position:fixed;
   top:0;
   width:100%;
-  background:var(--verde-oscuro);
+  background:var(--verde);
+  padding:10px 20px;
   display:flex;
-  justify-content:center;
+  align-items:center;
+  justify-content:space-between;
   z-index:1000;
+}
+
+nav h1{
+  color:white;
+  font-size:18px;
+  margin:0;
 }
 
 nav button{
   background:none;
   border:none;
   color:white;
-  padding:15px 20px;
-  font-weight:600;
+  font-weight:500;
+  margin-left:15px;
   cursor:pointer;
 }
 
-nav button:hover{
-  background:rgba(255,255,255,0.15);
-}
-
-/* CONTENEDOR */
+/* CONTENIDO */
 main{
-  max-width:1100px;
-  margin:120px auto 60px;
+  max-width:1000px;
+  margin:120px auto;
   padding:20px;
 }
 
-/* SECCIONES */
-.section{
-  display:none;
+section{
   background:white;
-  border-radius:12px;
-  padding:35px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.12);
-  animation:fade 0.4s ease;
-}
-
-.section.active{ display:block; }
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-h1,h2,h3{
-  font-family:'Lora',serif;
-  color:var(--verde-oscuro);
+  padding:40px;
+  border-radius:14px;
+  margin-bottom:50px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
 }
 
 h2{
-  border-bottom:3px solid var(--verde-claro);
+  font-family:'Playfair Display',serif;
+  color:var(--verde);
+  border-bottom:3px solid var(--verde-suave);
   padding-bottom:8px;
 }
 
 /* TARJETAS */
-.cards{
+.grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+  gap:25px;
 }
 
 .card{
-  background:var(--beige);
-  padding:20px;
-  border-radius:10px;
+  background:var(--crema);
+  padding:25px;
+  border-radius:12px;
+  transition:transform .3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
 }
 
 /* PROCESOS */
-.processes{
-  display:flex;
-  flex-wrap:wrap;
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:20px;
+}
+
+.process{
+  background:var(--verde);
+  color:white;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:background .3s;
+}
+
+.process:hover{
+  background:var(--dorado);
+  color:black;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
   justify-content:center;
 }
 
-.reactor{
-  background:var(--azul);
+.modal-content{
+  background:white;
+  padding:30px;
+  border-radius:14px;
+  max-width:500px;
+}
+
+.modal button{
+  margin-top:15px;
+  background:var(--verde);
   color:white;
-  width:220px;
-  padding:20px;
-  border-radius:12px;
+  border:none;
+  padding:8px 15px;
   cursor:pointer;
-  text-align:center;
-  transition:transform 0.3s;
 }
 
-.reactor:hover{
-  transform:scale(1.05);
-}
-
-.process-info{
-  margin-top:25px;
-  padding:20px;
-  background:var(--rosado);
-  border-radius:10px;
-  display:none;
-}
-
-/* FOOTER */
 footer{
-  background:var(--verde-oscuro);
+  background:var(--verde);
   color:white;
   text-align:center;
   padding:25px;
-  margin-top:40px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVEGACIÓN -->
 <nav>
-  <button onclick="showSection('intro')">Introducción</button>
-  <button onclick="showSection('caracteristicas')">Características</button>
-  <button onclick="showSection('procesos')">Obtención</button>
-  <button onclick="showSection('aplicaciones')">Aplicaciones</button>
-  <button onclick="showSection('bibliografia')">Bibliografía</button>
+<h1>Ácido Cítrico</h1>
+<div>
+<button onclick="go('intro')">Introducción</button>
+<button onclick="go('prop')">Propiedades</button>
+<button onclick="go('proc')">Procesos</button>
+<button onclick="go('apli')">Aplicaciones</button>
+<button onclick="go('bib')">Bibliografía</button>
+</div>
 </nav>
 
 <main>
 
-<!-- INTRO -->
-<section id="intro" class="section active">
+<section id="intro">
 <h2>Introducción</h2>
 <p>
-El ácido cítrico es un ácido orgánico tricarboxílico presente de forma natural en frutas cítricas como el limón y la naranja. 
-Químicamente corresponde a la fórmula C₆H₈O₇ y posee alta solubilidad en agua. 
-Además de su uso industrial, cumple una función biológica esencial al participar en el ciclo de Krebs, proceso metabólico central para la obtención de energía celular.
+El ácido cítrico es un ácido orgánico tricarboxílico presente de forma natural en frutas cítricas y en los organismos vivos como intermediario del ciclo de Krebs. Su fórmula molecular es C₆H₈O₇ y destaca por su elevada solubilidad en agua y su comportamiento como ácido débil.
 </p>
 </section>
 
-<!-- CARACTERÍSTICAS -->
-<section id="caracteristicas" class="section">
-<h2>Características</h2>
-<div class="cards">
-<div class="card">
-<h3>Aspecto físico</h3>
-<p>Sólido cristalino blanco, inodoro y de sabor intensamente ácido.</p>
-</div>
-<div class="card">
-<h3>Comportamiento químico</h3>
-<p>Ácido débil que puede liberar hasta tres protones (H⁺).</p>
-</div>
-<div class="card">
-<h3>Fórmula</h3>
-<p>C₆H₈O₇ – Masa molar: 192,12 g/mol.</p>
-</div>
+<section id="prop">
+<h2>Propiedades</h2>
+<div class="grid">
+<div class="card">Sólido cristalino blanco, inodoro y de sabor ácido.</div>
+<div class="card">Tres grupos –COOH que le confieren carácter ácido.</div>
+<div class="card">Alta capacidad quelante y reguladora de pH.</div>
 </div>
 </section>
 
-<!-- PROCESOS -->
-<section id="procesos" class="section">
-<h2>Procesos de obtención (interactivo)</h2>
-
-<div class="processes">
-<div class="reactor" onclick="showProcess(1)">Extracción natural</div>
-<div class="reactor" onclick="showProcess(2)">Proceso italiano</div>
-<div class="reactor" onclick="showProcess(3)">Proceso químico</div>
-<div class="reactor" onclick="showProcess(4)">Fermentación industrial</div>
+<section id="proc">
+<h2>Procesos de obtención</h2>
+<div class="process-grid">
+<div class="process" onclick="openModal(1)">Extracción natural</div>
+<div class="process" onclick="openModal(2)">Proceso italiano</div>
+<div class="process" onclick="openModal(3)">Proceso químico</div>
+<div class="process" onclick="openModal(4)">Fermentación moderna</div>
 </div>
-
-<div id="processInfo" class="process-info"></div>
 </section>
 
-<!-- APLICACIONES -->
-<section id="aplicaciones" class="section">
+<section id="apli">
 <h2>Aplicaciones</h2>
 <ul>
-<li>Regulador de pH en alimentos (E-330)</li>
-<li>Industria farmacéutica</li>
-<li>Cosméticos</li>
-<li>Agente quelante en procesos industriales</li>
+<li>Industria alimentaria (E-330)</li>
+<li>Farmacéutica y cosmética</li>
+<li>Procesos industriales</li>
 </ul>
 </section>
 
-<!-- BIBLIO -->
-<section id="bibliografia" class="section">
+<section id="bib">
 <h2>Bibliografía</h2>
-<p>Ullmann's Encyclopedia of Industrial Chemistry.</p>
+<p>Ullmann’s Encyclopedia of Industrial Chemistry.</p>
 <p>FAO – Citric Acid Production.</p>
 </section>
 
 </main>
 
 <footer>
-<p>Trabajo académico – Ingeniería Química</p>
+Trabajo académico – Ingeniería Química
 </footer>
 
+<div class="modal" id="modal">
+<div class="modal-content" id="modalText"></div>
+</div>
+
 <script>
-function showSection(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-function showProcess(n){
-  const info=document.getElementById('processInfo');
-  info.style.display='block';
-
-  const texts=[
+function openModal(n){
+  const txt=[
     "",
-    "Obtención directa a partir de jugos cítricos mediante cristalización.",
-    "Precipitación del citrato de calcio a partir del jugo de limón.",
-    "Síntesis química con reactivos controlados.",
-    "Fermentación con Aspergillus niger, proceso moderno y eficiente."
+    "Obtención directa a partir de jugos cítricos mediante concentración.",
+    "Precipitación como citrato de calcio y posterior acidulación.",
+    "Síntesis química controlada.",
+    "Fermentación con Aspergillus niger, método industrial actual."
   ];
+  document.getElementById('modalText').innerHTML =
+    `<h3>Proceso ${n}</h3><p>${txt[n]}</p><button onclick="closeModal()">Cerrar</button>`;
+  document.getElementById('modal').style.display='flex';
+}
 
-  info.innerHTML=`<strong>Proceso ${n}</strong><p>${texts[n]}</p>`;
+function closeModal(){
+  document.getElementById('modal').style.display='none';
 }
 </script>
 
